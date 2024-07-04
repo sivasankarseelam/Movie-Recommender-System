@@ -27,22 +27,6 @@ The two datasets are merged on the title column to combine movie details with th
 ![image](https://github.com/sivasankarseelam/Movie-Recommender-System/assets/133698242/74223b3a-2257-4f40-9f4e-6f93a2a427f4)
 ![image](https://github.com/sivasankarseelam/Movie-Recommender-System/assets/133698242/e60f31a0-b795-4d1e-877b-9574d9eab361)
 ![image](https://github.com/sivasankarseelam/Movie-Recommender-System/assets/133698242/bfe1f0b6-27d1-4505-8c50-9ae8e32988cc)
-movies['genres'] = movies['genres'].apply(convert)
-movies['keywords'] = movies['keywords'].apply(convert)
-movies['cast'] = movies['cast'].apply(convert3)
-movies['crew'] = movies['crew'].apply(fetch_director)
-
-movies['overview'] = movies['overview'].apply(lambda x: x.split())
-movies['genres'] = movies['genres'].apply(lambda x: [i.replace(" ", "") for i in x])
-movies['keywords'] = movies['keywords'].apply(lambda x: [i.replace(" ", "") for i in x])
-movies['cast'] = movies['cast'].apply(lambda x: [i.replace(" ", "") for i in x])
-movies['crew'] = movies['crew'].apply(lambda x: [i.replace(" ", "") for i in x])
-
-movies['tags'] = movies['overview'] + movies['genres'] + movies['keywords'] + movies['cast'] + movies['crew']
-new_df = movies[['movie_id', 'title', 'tags']]
-new_df['tags'] = new_df['tags'].apply(lambda x: " ".join(x))
-new_df['tags'] = new_df['tags'].apply(lambda x: x.lower())
-new_df['tags'] = new_df['tags'].apply(stem)
 
 ### 1.5 Vectorization and Similarity Calculation
 - CountVectorizer: The tags column is vectorized using CountVectorizer.
